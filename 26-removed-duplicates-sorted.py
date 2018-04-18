@@ -44,6 +44,29 @@ class Solution:
 
         return output_index
 
+    def more_alternate(self, nums):
+
+        if not nums:
+            return 0
+
+        output_index = 0
+
+        for i in range(1, len(nums)):
+            if nums[i] != nums[output_index]:
+                output_index += 1
+                nums[output_index] = nums[i]
+
+        return output_index + 1
+
+# def remove_3_candy(s):
+#
+#     s = list(s)
+#
+#     output_index = 0
+#
+#     for i in range(1, len(s)):
+#         if s[i] == s[output_index]:
+#             s[output_index] = s[]
 
 # Similar question one more - remove elements in place:
 
