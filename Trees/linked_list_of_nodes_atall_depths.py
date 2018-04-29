@@ -1,6 +1,19 @@
+# Given a binary tree, design an algorithm which creates a linked list of all the nodes at each depth:
+
+# all tests should start with test_
 
 import unittest
 import collections
+
+class LinkedNode(object):
+
+    def __init__(self, data, next=None):
+        self.data = data
+        self.next = next
+
+    def __str__(self):
+        return str(self.data) + ',' + str(self.next)
+
 
 
 class BNode(object):
@@ -11,40 +24,48 @@ class BNode(object):
         self.right = right
 
 
-    def zigzag_level_order(self):
+# Like postorder traversal, append left, append right and then print self
+# Called as Level-Order traversal
 
-        if not self:
-            return []
+    def make_ll_of_all_depths(self):
 
         q = collections.deque()
 
-        current = self
+        q.append(self)
         q.append(None)
 
-        tmp = []
-        i = 0
+        ll = ll_tail = LinkedNode(None)
+
+        my_list = []
+
+
 
         while len(q) != 0:
+            current = q.popleft()
             if current is None:
-                if i%2 == 0:
-                    tmp.reverse()
-                print(tmp)
-                tmp = []
-                q.append(None)
+                print(ll)
+                my_list.append(ll)
+                if len(q) != 0:
+                    ll = ll_tail = LinkedNode(None)
+                    q.append(None)
             else:
                 if current.left:
                     q.append(current.left)
                 if current.right:
                     q.append(current.right)
-                # print(current.data, " ", end="")
-                tmp.append(current.data)
-            current = q.popleft()
-            i += 1
+                ll_tail.next = LinkedNode(current.data)
+                ll_tail = ll_tail.next
+                if ll.data is None:
+                    ll = ll.next
 
-        if i%2 != 0:
-            tmp.reverse()
 
-        print(tmp)
+        print(my_list)
+
+        return my_list
+
+
+
+
 
 class MyTreeTestCases(unittest.TestCase):
 
@@ -66,7 +87,8 @@ class MyTreeTestCases(unittest.TestCase):
                              BNode(10))
                        )
                  )
-    tree.zigzag_level_order()
+    tree.make_ll_of_all_depths()
+    self.assertEqual(len(tree.make_ll_of_all_depths()), 4)
 
 
 if __name__ == "__main__":
