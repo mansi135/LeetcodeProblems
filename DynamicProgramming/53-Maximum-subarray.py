@@ -5,6 +5,7 @@ class Solution(object):
         :rtype: int
         """
 
+        # this is slightly modified version of Kadane's algorithm
         if not nums:
             return []
 
