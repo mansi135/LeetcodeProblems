@@ -27,13 +27,15 @@ def kthsmallest(nums, k):
 
     i = 0
     while len(heap) < k:
-        heapq.heappush(heap, nums[i])
+        # heapq.heappush(heap, nums[i])
+        heap.append(nums[i])
         i += 1
 
+    # use max heap
     heapq._heapify_max(heap)
 
     while i < len(nums):
-        print(heap, i)
+        #print(heap, i)
         if heap[0] > nums[i]:
             heapq.heappop(heap)
             heapq.heappush(heap, nums[i])
@@ -44,4 +46,29 @@ def kthsmallest(nums, k):
 
     return heap[0]
 
-print(kthsmallest([4,0,3,2], 2))
+#print(kthsmallest([4,0,3,2], 2))
+
+
+
+
+def klargest_elements(nums, k):
+
+    heap = []
+    i = 0
+
+    for i in range(k):
+        heap.append(nums[i])
+
+    # use min heap
+    heapq.heapify(heap)
+
+    for i in range(k, len(nums)):
+        if heap[0] < nums[i]:
+            heapq.heappop(heap)
+            heapq.heappush(heap, nums[i])
+            heapq.heapify(heap)
+
+    return heap
+
+
+print(klargest_elements([7,0,4,8,90,6], 7))
