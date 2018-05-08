@@ -1,5 +1,12 @@
 #Tags - Backtracking , Matrix, Recursion , DFS
 
+# This trick was helpful in 4 problems ->
+'''
+1) word serch
+2) longest 1s
+3) finding paths in directed graphs
+4) finding all paths in binary tree
+'''
 
 class Solution(object):
 
