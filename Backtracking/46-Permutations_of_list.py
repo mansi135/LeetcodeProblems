@@ -62,3 +62,9 @@ def main(string):
 
 
 main('AABC')
+
+'''
+Subset means 2^n (there can be empty sets also or sets with just 1 element
+Permutation means length of each set is always n (it cnt be empty or 1) -> so its n!
+If there are repeats -> n!/r1!*r2! etc
+'''
