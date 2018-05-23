@@ -60,3 +60,9 @@ class Solution(object):
 
         one_path.pop()
 
+
+from math import *
+
+
+print(math.inf)
+
